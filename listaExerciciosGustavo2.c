@@ -332,6 +332,39 @@ int questao11() {
    return 0;
 }
 
+int questao12() {
+    int matriz[3][3];
+    int contador = 1;
+    int soma = 0;
+    int linhas = 0, colunas = 0;
+    for(int i = 0; i < 3; i++){
+        for(int j = 0; j < 3; j++){
+            printf("\nDigite o %d° número:\n", contador);
+            scanf("%d", &matriz[i][j]);
+            contador++;
+        }
+    }
+    system("clear");
+    printf("\nAqui está a matriz:\n");
+    for(int i = 0; i < 3; i++) {
+        for(int j = 0; j < 3; j++) {
+            printf("%d|", matriz[i][j]);
+        }
+        printf("\n");
+    }
+    for(int i = 0; i < 3; i++) {
+        if(linhas < 3 && colunas < 3) {
+            soma = soma + matriz[linhas][colunas];
+            linhas++;
+            colunas++;
+        }
+    }
+    printf("\nA soma da diagonal principal '%d, %d, %d' é: %d\n", matriz[0][0], matriz[1][1], matriz[2][2], soma);
+    char *status = (matriz[0][2]==matriz[2][0]) ? "\nA matriz é simétrica!\n" : "\nA matriz não é simétrica!\n";
+    printf("%s", status);
+    return 0;
+}
+
 int somatorio() {
     int soma = 0;
     int num;
@@ -348,7 +381,7 @@ int somatorio() {
 
 int main() {
    setlocale(LC_ALL, "Portuguese");
-   questao10();
+   questao12();
 
 
    return 0;
