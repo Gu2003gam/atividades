@@ -20,8 +20,7 @@ void removerQuebraDeLinha(char *str) {
 }
 
 int main() {
-    int c;
-    int opcao;
+    int c, opcao, id;
     do {
         printf(
             "+++++++++++++++++++++++++++++++++++++++\n"
@@ -42,7 +41,7 @@ int main() {
             case 1:
             while (opcao != 5) {
                 printf(
-                    "GESTÃO DE LIVROS\n"
+                    "\nGESTÃO DE LIVROS\n"
                     "1 - Adicionar Livro\n"
                     "2 - Exibir Livros\n"
                     "3 - Atualizar Livro\n"
@@ -72,6 +71,7 @@ int main() {
                             "\n%s, Autor: %s, Editora: %s\n",
                             biblioteca[numero_de_livros].titulo, biblioteca[numero_de_livros].autor, biblioteca[numero_de_livros].editora
                         );
+
                         numero_de_livros ++;
                     } else {
                         printf("\nO número máximo de livros foi atingido!\n");
@@ -79,14 +79,32 @@ int main() {
                     break;
                     case 2 :
                     printf("\nLista de livros:\n");
-                    for(int i = 0; i <= numero_de_livros; i++) {
+                    for(int i = 0; i < numero_de_livros; i++) {
+                        biblioteca[i].id = biblioteca[i].id + (i + 1);
                         printf(
-                            "\n%d° - %s, Autor: %s, Editora: %s\n",
-                            i, biblioteca[i].titulo, biblioteca[i].autor, biblioteca[i].editora
+                            "\nID: %d\nTítulo: %s\n Autor: %s\n Editora: %s\n",
+                            biblioteca[i].id, biblioteca[i].titulo, biblioteca[i].autor, biblioteca[i].editora
                         );
                     }
                     break;
                     case 3 :
+                    printf("\nLista de livros:\n");
+                    for(int i = 0; i < numero_de_livros; i++) {
+                        biblioteca[i].id = biblioteca[i].id + (i + 1);
+                        printf(
+                            "\nID: %d\nTítulo: %s\n Autor: %s\n Editora: %s\n",
+                            biblioteca[i].id, biblioteca[i].titulo, biblioteca[i].autor, biblioteca[i].editora
+                        );
+                    }
+                    printf("\nDigite o número do ID do livro que você deseja atualizar:\n");
+                    scanf("d", &id);
+                    for(int i = 0; i < numero_de_livros; i++) {
+                        if(biblioteca[i].id == id) {
+                            printf("\nQual é o novo título do livro?:\n");
+                            fgets(biblioteca[i].titulo, sizeof(biblioteca[i].titulo, biblioteca[i].))
+                        }
+                    }
+                    break;
                 }
             }
             break;

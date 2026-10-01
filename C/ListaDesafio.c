@@ -528,7 +528,8 @@ int desafio25() {
 }
 
 int desafio26() {
-    char texto[100];
+    //criptografia com cifra de césar
+    char texto[100], c;
     int chave, acao;
     printf("\nDigite a frase:\n");
     getchar();
@@ -542,14 +543,14 @@ int desafio26() {
     printf("\nDigite o valor da chave:\n");
     scanf("%d", &chave);
     if (acao == 2) {
-        chave = 26 - (chave % 26);
+        chave = -chave;
     }
     for(int i = 0; texto[i] != '\0'; i++) {
-        char c = texto[i];
+        c = texto[i];
 
         if(isalpha(c)) {
             char base = isupper(c) ? 'A' : 'a';
-            texto[i] = (c - base + chave) % 26 + base;
+            texto[i] = (c - base + chave % 26 + 26) % 26 + base;
         }
     }
     printf("\nTexto criptografado: %s\n", texto);
@@ -590,8 +591,78 @@ int desafio27() {
 }
 
 int desafio28() {
-    
+    //menor número divisível
+    int primos[4] = {2, 3, 5, 7}, potencias[4], imc = 1;
+    for(int i = 0; i < 4; i++) {
+        if(i == 0) {
+            potencias[i] = (int)pow(primos[i], 3);
+        } else if(i == 1) {
+            potencias[i] = (int)pow(primos[i], 2);
+        } else {
+            potencias[i] = primos[i];
+        }
+        imc *= potencias[i];
+    }
+    printf("\n%d X %d X %d X %d = %d\n", potencias[0], potencias[1], potencias[2], potencias[3], imc);
+    return 0;
+}
 
+int desafio29() {
+    //validador completo de datas com anos bissextos
+    int dia, mes, ano;
+    int eh_valido = 0;
+    printf("\nDigite o valor de dia:\n");
+    scanf("%d", &dia);
+    printf("\nDigite o valor de mês:\n");
+    scanf("%d", &mes);
+    printf("\nDigite o valor de ano:\n");
+    scanf("%d", &ano);
+    if(ano % 4 == 0 || ano % 400 == 0) {
+        //ano bissexto
+        if(mes >= 1 && mes <= 12) {
+            if(mes == 2) {
+                if(dia >= 1 && dia <= 29) {
+                    eh_valido++;
+                }
+        } else {
+                    int trinta_trinta_um = (mes != 4 && mes != 6 && mes != 9 && mes != 11) ? 1 : 2;
+                    if(trinta_trinta_um == 1) {
+                        if(dia >= 1 && dia <= 31) {
+                            eh_valido++;
+                        }
+                    } else if(trinta_trinta_um == 2) {
+                        if(dia >= 1 && dia <= 30) {
+                            eh_valido++;
+                    }
+                }
+            }
+    }
+} else {
+    //ano comum
+    if(mes >= 1 && mes <= 12) {
+            if(mes == 2) {
+                if(dia >= 1 && dia <= 28) {
+                    eh_valido++;
+                }
+        } else {
+                    int trinta_trinta_um = (mes != 4 && mes != 6 && mes != 9 && mes != 11) ? 1 : 2;
+                    if(trinta_trinta_um == 1) {
+                        if(dia >= 1 && dia <= 31) {
+                            eh_valido++;
+                        }
+                    } else if(trinta_trinta_um == 2) {
+                        if(dia >= 1 && dia <= 30) {
+                            eh_valido++;
+                    }
+                }
+            }
+    }
+}
+if (eh_valido == 1) {
+    printf("\nA data %d/%d/%d é válida!\n", dia, mes, ano);
+} else {
+    printf("\nA data %d/%d/%d NÃO é válida!\n", dia, mes, ano);
+}
     return 0;
 }
 
@@ -612,7 +683,7 @@ int desafio30() {
 
 
 int main() {
-    desafio26();
+    desafio23();
 
 
     return 0;
